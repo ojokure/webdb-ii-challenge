@@ -33,4 +33,21 @@ carsInfoRouter.get("/:id", async (req, res) => {
       });
     }
   });
+
+
+  carsInfoRouter.post("/", async (req, res) => {
+    try {
+      const newEntry = await db
+        .select("*")
+        .from("cars")
+        .insert(req.body)
+        .where({ car_id: req.params.id });
+  
+      res.json("New entry got created with an id of " + newEntry[0]);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  
 module.exports = carsInfoRouter;
