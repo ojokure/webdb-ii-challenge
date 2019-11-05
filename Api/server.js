@@ -11,6 +11,6 @@ server.use(express.json());
 server.use("/api/cars", carsInfoRouter);
 
 server.get("/", (req, res) => {
-  res.send('<h2> doing something right </h2>');
+  res.send('<h2> still connected </h2>');
 });
 module.exports = server;
