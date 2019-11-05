@@ -11,8 +11,7 @@ exports.up = function(knex) {
       .notNullable();
     table.string("model").notNullable();
     table.integer("mileage").notNullable();
-    table.text("transmission type").notNullable();
-    table.tex("status").notNullable();
+    table.text("status").notNullable();
   });
 };
 
@@ -20,4 +19,3 @@ exports.down = function(knex) {
   return knex.schema.dropTableIfExists("cars");
 };
 
-// VIN, make, model, and mileage.
