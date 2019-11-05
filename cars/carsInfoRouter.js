@@ -51,11 +51,15 @@ carsInfoRouter.put("/:id", (req, res) => {
   db.select("*")
     .from("cars")
     .where({ car_id: req.params.id })
-    .update(req.body)
+    .update({
+      VIN: req.body.VIN,
+      make: req.body.make,
+      model: req.body.model,
+      mileage: req.body.mileage,
+      status: req.body.status
+    })
     .then(updated => {
-     res.status(200).json(
-      updated + "car(s) information edited succesfully"
-     ) 
+      res.status(200).json(updated + "car(s) information edited succesfully");
     })
     .catch(error => {
       res.status(500).json({
@@ -76,6 +80,5 @@ carsInfoRouter.delete("/:id", (req, res) => {
       res.status(500).json({ message: error.message });
     });
 });
-
 
 module.exports = carsInfoRouter;
